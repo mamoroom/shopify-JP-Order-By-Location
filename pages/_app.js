@@ -15,6 +15,7 @@ class MyApp extends App {
       shopOrigin,
       forceRedirect: true,
     };
+    console.log("API_KEY", process.env.API_KEY);
     return (
       <React.Fragment>
         <Head>
