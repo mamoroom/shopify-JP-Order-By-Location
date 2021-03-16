@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { EmptyState, Layout, Page } from "@shopify/polaris";
+import { Layout, Page } from "@shopify/polaris";
+import LocationList from "../components/LocationList";
 import OrderList from "../components/OrderList";
 
 export default function Index() {
@@ -10,7 +11,16 @@ export default function Index() {
   console.log(locationID);
   return (
     <Page>
-      <OrderList updateLocationID={updateLocationID} />
+      <LocationList updateLocationID={updateLocationID} />
+      <Page title="Unfulfilled Orders">
+        {locationID ? (
+          <OrderList locationID={locationID} />
+        ) : (
+          <Layout>
+            <p>Select store locations at first.</p>
+          </Layout>
+        )}
+      </Page>
     </Page>
   );
 }
