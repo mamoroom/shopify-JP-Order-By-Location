@@ -9,21 +9,7 @@ const FETCH_LOCATIONS = gql`
       edges {
         node {
           id
-          legacyResourceId
           name
-          address {
-            address1
-            address2
-            city
-            country
-            countryCode
-            latitude
-            longitude
-            phone
-            province
-            provinceCode
-            zip
-          }
         }
       }
     }
@@ -42,7 +28,7 @@ export default function LocationList({ updateLocationID }) {
         if (error) return <div>{error.message}</div>;
         const options = data.locations.edges.map((edge) => {
           return {
-            value: edge.node.legacyResourceId,
+            value: edge.node.id,
             label: edge.node.name,
           };
         });
