@@ -1,21 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { EmptyState, Layout, Page } from "@shopify/polaris";
+import OrderList from "../components/OrderList";
 
-class Index extends React.Component {
-  state = { open: false };
-  render() {
-    return (
-      <Page>
-        <Layout></Layout>
-      </Page>
-    );
-  }
-  handleSelection = (resources) => {
-    const idsFromResources = resources.selection.map((product) => product.id);
-
-    this.setState({ open: false });
-    console.log(idsFromResources);
+export default function Index() {
+  const [locationID, setLocationID] = useState("");
+  const updateLocationID = (id) => {
+    setLocationID(id);
   };
+  console.log(locationID);
+  return (
+    <Page>
+      <OrderList updateLocationID={updateLocationID} />
+    </Page>
+  );
 }
-
-export default Index;
